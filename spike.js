@@ -1,9 +1,15 @@
 function Spike(){
-	this.y = 100;
-	this.x = 1200;
-	
+	this.y = height;
+	this.w = 25;
+	this.x = width;
+	this.speed = 10;
 	this.show = function(){
 			fill(255);
-			ellipse(this.x,this.y,75,75)
+			triangle(this.x, this.y, this.x- this.w/2,
+			this.y- this.w ,this.x- this.w , this.y);
 		}
+	this.update = function(){
+		this.x -= this.speed;
+	}	
+}
 		
