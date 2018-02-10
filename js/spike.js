@@ -1,8 +1,8 @@
-function Spike(){
+function Spike(numberInSet){
 	this.y = height;
-	this.w = 50;
-	this.x = width;
-	this.speed = 8;
+	this.size = 50;
+	this.x = width+(this.size*numberInSet);
+	this.speed = 15;
 	this.highlight = false;
 
 	
@@ -11,8 +11,7 @@ function Spike(){
 			if(this.highlight){
 				fill(255,0,0);
 			}
-			triangle(this.x-this.w, this.y, this.x,
-			this.y- this.w ,this.x + this.w , this.y);
+			ellipse(this.x,this.y,this.size,this.size);
 		}
 	this.update = function(){
 		this.x -= this.speed;
@@ -25,20 +24,13 @@ function Spike(){
 		return false;
 	}
 	
-	// compare between 2 squares
-	this.hits = function(rex) {
-		if(((rex.x+rex.size) > this.x || (rex.x - rex.size) > this.x) &&
-		((rex.x+rex.size) < (this.x - this.w) || (rex.x - rex.size) < (this.x - this.w)) &&
-		((rex.y+rex.size) > this.y)){
-			this.highlight = true;
-			return true;
-		}
-		return false;
-	}
 
 	// compare between 2 circles
-	this.hits2 = function(rex) {
-		if(Math.hypot(this.x-rex.x, this.y-rex.y) <= (this.w + (rex.size/2))){
+	this.hits = function(rex) {
+		if(Math.hypot(this.x-rex.x, this.y-rex.y) <= ((this.size/2) + (rex.size/2))){
+			if(!this.highlight){
+				rex.lives -= 1;
+			}
 			this.highlight = true;
 			return true;
 		}
