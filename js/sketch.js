@@ -3,8 +3,7 @@ var spikes = [];
 var spikesGap = 60;
 
 function setup() { 
-  createCanvas(1535, 720);
-  var tiles = [1535*720];
+  createCanvas(1500, 700);
   rex = new Rex();
   spikes.push(new Spike());
 } 
@@ -16,8 +15,8 @@ function draw() {
 	  spikes[i].show();
 	  spikes[i].update();
 	  
-	  if(spikes[i].hits(rex)){
-		  console.log("hitou");
+	  if(spikes[i].hits2(rex)){
+		  
 	  }
 	  
 	  if(spikes[i].offScreen()){

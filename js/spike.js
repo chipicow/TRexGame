@@ -11,8 +11,8 @@ function Spike(){
 			if(this.highlight){
 				fill(255,0,0);
 			}
-			triangle(this.x+this.w, this.y, this.x,
-			this.y- this.w ,this.x- this.w , this.y);
+			triangle(this.x-this.w, this.y, this.x,
+			this.y- this.w ,this.x + this.w , this.y);
 		}
 	this.update = function(){
 		this.x -= this.speed;
@@ -25,11 +25,20 @@ function Spike(){
 		return false;
 	}
 	
-	// compare between circles
+	// compare between 2 squares
 	this.hits = function(rex) {
 		if(((rex.x+rex.size) > this.x || (rex.x - rex.size) > this.x) &&
 		((rex.x+rex.size) < (this.x - this.w) || (rex.x - rex.size) < (this.x - this.w)) &&
 		((rex.y+rex.size) > this.y)){
+			this.highlight = true;
+			return true;
+		}
+		return false;
+	}
+
+	// compare between 2 circles
+	this.hits2 = function(rex) {
+		if(Math.hypot(this.x-rex.x, this.y-rex.y) <= (this.w + (rex.size/2))){
 			this.highlight = true;
 			return true;
 		}
