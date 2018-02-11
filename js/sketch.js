@@ -1,37 +1,79 @@
 var rex;
 var spikes = [];
-var spikesGap = 60;
+var spikesGap = 90;
+var birds = [];
+var durationSpaceForBiggerJump = 0.2;
+var output = document.getElementById('output'),
+    pressed = {};
 
 function setup() { 
   createCanvas(1500, 700);
   rex = new Rex();
-  spikes.push(new Spike(1));
 } 
 
-function draw() { 
-  background(0);
- 
-  for(var i = spikes.length-1;i >= 0;i--){
-	  spikes[i].show();
-	  spikes[i].update();
+function restart(){
+	alert("You lose , try again?");
+	birds = [];
+	spikes = [];
+	setup();
+}
+
+
+function draw() {
+	background(0);
+	//spikes drawing
+	for(var i = spikes.length-1;i >= 0;i--){
+	 	spikes[i].show();
+	 	spikes[i].update();
 	  
-	  if(spikes[i].hits(rex)){
-	  }
+		if(spikes[i].hits(rex)){
+ 			if(rex.lives <= 0){
+  				restart();
+  				return;
+  			}
+		}
+
+		if(spikes[i].offScreen()){
+			spikes.splice(i,1);
+	  	}  
+  	} 
+  	//birds drawing
+  	for(var i = birds.length-1;i >= 0;i--){
+	 	birds[i].show();
+	 	birds[i].update();
 	  
-	  if(spikes[i].offScreen()){
-		  spikes.splice(i,1);
-	  }  
-  } 
-   
-  rex.update();
-  rex.show();
+		if(birds[i].hits(rex)){
+ 			if(rex.lives <= 0){
+  				restart();
+  				return;
+  			}
+		}
+		if(birds[i].offScreen()){
+			birds.splice(i,1);
+	  	}  
+  	} 
+  
+	rex.update();
+ 	rex.show();
   
   if(frameCount % spikesGap == 0){
-	  var amountSpikes = this.getRandomInt(1,7);
-	  for(var j = 0; j < amountSpikes ; j++){
+	var amountSpikes = this.getRandomInt(1,13);
+	if(amountSpikes < 7)
+		birds.push(new Bird());
+	for(var j = 0; j < amountSpikes ; j++){
 		spikes.push(new Spike(j));
 	  }
   }
+}
+
+//
+function setSpikeGap (randomInt){
+		if(randomInt<7){
+			spikesGap = 60;
+		}else{
+			spikesGap = 80;
+		}
+
 }
 
 function getRandomInt(min, max) {
@@ -40,8 +82,25 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-function keyPressed(){
-	if(keyCode == 32 ){
+function makeRexJump(keyCode,duration){
+	if(keyCode == 32 && rex.lives > 0 ){
+		if(duration>durationSpaceForBiggerJump){
+			rex.lift = -25;
+		}
 		rex.jump();
-	}
+		rex.lift = -15;
+		}
 }
+
+window.onkeydown = function(e) {
+    if ( pressed[e.which] ) return;
+    pressed[e.which] = e.timeStamp;
+};
+    
+window.onkeyup = function(e) {
+    if ( !pressed[e.which] ) return;
+    var duration = ( e.timeStamp - pressed[e.which] ) / 1000;
+    makeRexJump(e.which,duration);
+    pressed[e.which] = 0;
+};
+

@@ -1,17 +1,18 @@
-function Spike(numberInSet){
-	this.y = height;
+function Bird(){
+	this.spaceFromFloor = 300;
+	this.y = height - this.spaceFromFloor;
 	this.size = 50;
-	this.x = width+(this.size*numberInSet);
+	this.x = width+200;
 	this.speed = 15;
 	this.highlight = false;
+	this.hitting = false;
 
-	
 	this.show = function(){
 			fill(255);
 			if(this.highlight){
 				fill(255,0,0);
 			}
-			ellipse(this.x,this.y,this.size,this.size);
+			rect(this.x,this.y,this.size,this.size);
 		}
 	this.update = function(){
 		this.x -= this.speed;
@@ -23,16 +24,10 @@ function Spike(numberInSet){
 		}
 		return false;
 	}
-	
-	//compare circle and poly
-	this.hits2 = function(rex){
-
-	}
-
-
-	// compare between 2 circles
+	// compare between rectangle and circle
 	this.hits = function(rex) {
-		if(Math.hypot(this.x-rex.x, this.y-rex.y) <= ((this.size) + (rex.size/2))){
+		this.hitting = collideRectCircle(this.x,this.y,this.size,this.size,rex.x,rex.y,rex.size);
+		if(this.hitting){
 			if(!this.highlight){
 				rex.lives -= 1;
 			}
