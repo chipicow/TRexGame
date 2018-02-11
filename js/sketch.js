@@ -9,12 +9,12 @@ var output = document.getElementById('output'),
     pressed = {};
 
 function preload(){
-	img = loadImage('chars/trex.jpg');
+	//img = loadImage('chars/trex.jpg');
 }
 
 function setup() { 
   createCanvas(1500, 700);
-  rex = new Rex(img);
+  rex = new Rex();
 } 
 
 function restart(){
