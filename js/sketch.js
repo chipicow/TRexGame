@@ -2,17 +2,23 @@ var rex;
 var spikes = [];
 var spikesGap = 90;
 var birds = [];
+var score = 0;
+var img;
 var durationSpaceForBiggerJump = 0.2;
 var output = document.getElementById('output'),
     pressed = {};
 
+function preload(){
+	img = loadImage('chars/trex.jpg');
+}
+
 function setup() { 
   createCanvas(1500, 700);
-  rex = new Rex();
+  rex = new Rex(img);
 } 
 
 function restart(){
-	alert("You lose , try again?");
+	alert("You lose with this score: "+score +", try again?");
 	birds = [];
 	spikes = [];
 	setup();
@@ -35,6 +41,7 @@ function draw() {
 
 		if(spikes[i].offScreen()){
 			spikes.splice(i,1);
+			score++;
 	  	}  
   	} 
   	//birds drawing
@@ -50,6 +57,7 @@ function draw() {
 		}
 		if(birds[i].offScreen()){
 			birds.splice(i,1);
+			score++;
 	  	}  
   	} 
   
