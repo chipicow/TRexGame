@@ -9,18 +9,19 @@ var output = document.getElementById('output'),
     pressed = {};
 
 function preload(){
-	//img = loadImage('chars/trex.jpg');
+	img = loadImage('https://i.imgur.com/yHyeAw3.jpg');
 }
 
 function setup() { 
   createCanvas(1500, 700);
-  rex = new Rex();
+  rex = new Rex(img);
 } 
 
 function restart(){
 	alert("You lose with this score: "+score +", try again?");
 	birds = [];
 	spikes = [];
+	score = 0;
 	setup();
 }
 

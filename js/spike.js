@@ -23,12 +23,6 @@ function Spike(numberInSet){
 		}
 		return false;
 	}
-	
-	//compare circle and poly
-	this.hits2 = function(rex){
-
-	}
-
 
 	// compare between 2 circles
 	this.hits = function(rex) {

@@ -1,5 +1,4 @@
-function Rex(){
-	
+function Rex(img){
 	this.size = 75;
 	this.y = height- this.size/2;
 	this.x = 250;
@@ -7,7 +6,7 @@ function Rex(){
 	this.gravity = 1;
 	this.lift = -15;
 	this.lives = 5;
-	//this.image = img;
+	this.imageToUse = img;
 	
 	this.show = function(){
 			switch(this.lives) {
@@ -30,9 +29,9 @@ function Rex(){
 					fill(255,0,0);
 					//kill the circle
 			}
-			//imageMode(CENTER);
-			//image(this.image,this.x,this.y);
-			ellipse(this.x,this.y,this.size,this.size);
+			imageMode(CENTER);
+			image(this.imageToUse,this.x,this.y);
+			//ellipse(this.x,this.y,this.size,this.size);
 		}
 		
 	this.update = function(){
