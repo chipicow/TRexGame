@@ -28,7 +28,7 @@ function Spike(numberInSet){
 	this.hits = function(rex) {
 		if(Math.hypot(this.x-rex.x, this.y-rex.y) <= ((this.size) + (rex.size/2))){
 			if(!this.highlight){
-				rex.size +=20
+				//rex.size +=20
 				rex.lives -= 1;
 			}
 			this.highlight = true;

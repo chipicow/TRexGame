@@ -28,6 +28,9 @@ function restart(){
 
 function draw() {
 	background(0);
+
+	rex.update();
+ 	rex.show();
 	//spikes drawing
 	for(var i = spikes.length-1;i >= 0;i--){
 	 	spikes[i].show();
@@ -62,8 +65,6 @@ function draw() {
 	  	}  
   	} 
   
-	rex.update();
- 	rex.show();
   
   if(frameCount % spikesGap == 0){
 	var amountSpikes = this.getRandomInt(1,13);

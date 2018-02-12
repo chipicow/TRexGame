@@ -6,15 +6,18 @@
   "dependencies": {
     "express": "^4.16.2",
     "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.2.1"
-  },
-  "devDependencies": {
+    "gulp-nodemon": "^2.2.1",
     "gulp-concat": "^2.6.1",
     "gulp-minify-html": "^1.0.6",
     "gulp-uglify": "^3.0.0",
     "ws": "3.3.2"
   },
-  "scripts": {},
+  "devDependencies": {
+  },
+  "scripts": {
+    "start": "node server",
+    "postinstall": "gulp js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chipicow/TRexGame.git"
