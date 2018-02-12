@@ -3,18 +3,22 @@ var spikes = [];
 var spikesGap = 90;
 var birds = [];
 var score = 0;
-var img;
+var ballonfish = [];
 var durationSpaceForBiggerJump = 0.2;
 var output = document.getElementById('output'),
     pressed = {};
 
 function preload(){
-	img = loadImage('https://i.imgur.com/yHyeAw3.jpg');
+	ballonfish.push(loadImage('https://i.imgur.com/caPd7rH.jpg'));
+	ballonfish.push(loadImage('https://i.imgur.com/E0yPxZ9.jpg'));
+	ballonfish.push(loadImage('https://i.imgur.com/uKKQc5K.jpg'));
+	ballonfish.push(loadImage('https://i.imgur.com/veSuFWe.jpg'));
+	ballonfish.push(loadImage('https://i.imgur.com/xKt5cYm.jpg'));
 }
 
 function setup() { 
   createCanvas(1500, 700);
-  rex = new Rex(img);
+  rex = new Rex(ballonfish);
 } 
 
 function restart(){
@@ -35,9 +39,8 @@ function draw() {
 	for(var i = spikes.length-1;i >= 0;i--){
 	 	spikes[i].show();
 	 	spikes[i].update();
-	  
 		if(spikes[i].hits(rex)){
- 			if(rex.lives <= 0){
+ 			if(rex.lives <= 0){	
   				restart();
   				return;
   			}

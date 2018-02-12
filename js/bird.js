@@ -29,6 +29,7 @@ function Bird(){
 		this.hitting = collideRectCircle(this.x,this.y,this.size,this.size,rex.x,rex.y,rex.size);
 		if(this.hitting){
 			if(!this.highlight){
+				rex.size +=20;
 				rex.lives -= 1;
 			}
 			this.highlight = true;
