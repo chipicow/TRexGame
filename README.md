@@ -4,4 +4,6 @@ How to use:
   • cd the path
   • npm install
   • gulp js
-  • enjoy ur index.html game :D
+  • node server 
+  • localhost:3030
+  • enjoy ur game :D
