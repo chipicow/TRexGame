@@ -12,8 +12,7 @@
     "gulp-uglify": "^3.0.0",
     "ws": "3.3.2"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "node server",
     "postinstall": "gulp js"
